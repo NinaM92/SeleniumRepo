@@ -59,8 +59,7 @@ public class WomanCategoryTests extends BaseTests {
 	public void addMultipleProducts_3() throws InterruptedException {
 
 		productsCategoryNavigation.WomanTabClick();
-		womanCategoryPage.AddTwoProducts();
-		addOneProduct();
+		womanCategoryPage.AddThreeProducts();
 		Thread.sleep(2000);
 
 		String textForAssertion2 = (citacIzExcela.getStringData("CART_ADD_&_REMOVE", 30, 4));

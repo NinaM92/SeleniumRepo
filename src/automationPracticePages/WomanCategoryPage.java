@@ -2,7 +2,6 @@ package automationPracticePages;
 
 import java.util.List;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -27,10 +26,15 @@ public class WomanCategoryPage {
 	WebElement size;
 	WebElement quantityOfProductsInCart;
 	WebElement sizeLabel;
-	List<WebElement> AddToCartButtonsList;
-	List<WebElement> ImagesOfProductsList;
+//	List<WebElement> AddToCartButtonsList;
+//	List<WebElement> ImagesOfProductsList;
 	WebElement cartButton;
 	WebElement deleteProductButton;
+	WebElement popUpXIcon;
+
+	public WebElement getPopUpXIcon() {
+		return driver.findElement(By.xpath("//*[@id=\"layer_cart\"]/div[1]/div[1]/span"));
+	}
 
 	public WebElement getDeleteProductButton() {
 		return driver.findElement(By.xpath("//*[@id=\"2_7_0_520550\"]/i"));
@@ -109,6 +113,10 @@ public class WomanCategoryPage {
 		this.getDeleteProductButton().click();
 	}
 
+	public void PopUpXIconClick() {
+		this.getPopUpXIcon().click();
+	}
+
 	// Metode za String
 
 	public String valueFromQuantityOfProductsInCartNote() {
@@ -145,16 +153,41 @@ public class WomanCategoryPage {
 		size.selectByIndex(index);
 	}
 
-	public void AddTwoProducts() {
-		for (int i = 4; i < 6; i++) {
-			for (int j = 4; j < 6; j++) {
+//	public void AddTwoProducts() {
+//		for (int i = 1; i < 3; i++) {
+//			for (int j = 1; j < 3; j++) {
+//
+//				Actions hover2 = new Actions(driver);
+//				WebElement Images1 = getImagesOfProductsList().get(i);
+//				hover2.moveToElement(Images1).moveToElement(getAddToCartButtonsList().get(i)).click().build().perform();
+//
+//			}
+//		}
+//	}
 
-				Actions hover2 = new Actions(driver);
-				WebElement Images1 = getImagesOfProductsList().get(i);
-				hover2.moveToElement(Images1).moveToElement(getAddToCartButtonsList().get(i)).click().build().perform();
+	public void AddThreeProducts() {
+		Actions action = new Actions(driver);
+		WebElement PrintedDressPicture = driver
+				.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li/div/div[1]/div/a[1]/img"));
+		action.moveToElement(PrintedDressPicture)
+				.moveToElement(
+						driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[1]/div/div[2]/div[2]/a[1]")))
+				.click().build().perform();
+		PopUpXIconClick();
 
-			}
-		}
+		WebElement PrintedChiffonDressPicture = driver
+				.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[5]/div/div[1]/div/a[1]/img"));
+		action.moveToElement(PrintedChiffonDressPicture)
+				.moveToElement(
+						driver.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[5]/div/div[2]/div[2]/a[1]")))
+				.click().build().perform();
+		PopUpXIconClick();
+
+		WebElement BlousePicture = driver
+				.findElement(By.xpath("//*[@id=\"center_column\"]/ul/li[2]/div/div[1]/div/a[1]/img"));
+		action.moveToElement(BlousePicture).moveToElement(getBlouseAddToCartButton()).click().build().perform();
+		PopUpXIconClick();
+
 	}
 
 }
